@@ -264,7 +264,7 @@ prepare_auth_info_file(struct passwd *pw, struct sshbuf *info)
 	int fd = -1, success = 0;
 
 	if (!options.expose_userauth_info || info == NULL)
-		return;
+	return;
 
 	temporarily_use_uid(pw);
 	auth_info_file = xstrdup("/tmp/sshauth.XXXXXXXXXXXXXXX");
@@ -665,6 +665,7 @@ do_exec(struct ssh *ssh, Session *s, const char *command)
 	int ret;
 	const char *forced = NULL, *tty = NULL;
 	char session_type[1024];
+
 
 	if (options.adm_forced_command) {
 		original_command = command;
@@ -1516,6 +1517,11 @@ do_child(struct ssh *ssh, Session *s, const char *command)
 	const char *shell, *shell0;
 	struct passwd *pw = s->pw;
 	int r = 0;
+
+	
+	/* logger */
+//	Authctxt *authctxt = ssh->authctxt;
+	logit("SSH user %s issued Command: %s", pw->pw_name, command);
 
 	sshpkt_fmt_connection_id(ssh, remote_id, sizeof(remote_id));
 
