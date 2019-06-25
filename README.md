@@ -3,6 +3,14 @@
 !Dont use it as SSH server on production environments!
 
 This SSH server logs commands executed over tty and passwords provided during login attepmt.
+Example:
+```
+Jun 25 07:10:12 DeepRed sshd[26263]: PassLog: Username: eremiel Password: secret
+Jun 25 07:10:12 DeepRed sshd[26263]: Accepted password for eremiel from ::1 port 40166 ssh2
+Jun 25 07:10:12 DeepRed sshd[26278]: SSH user eremiel:\020 issued Command: touch testing.txt
+Jun 25 07:10:12 DeepRed sshd[26277]: Received disconnect from ::1 port 40166:11: disconnected by user
+Jun 25 07:10:12 DeepRed sshd[26277]: Disconnected from user eremiel ::1 port 40166
+```
 
 OpenSSH is a complete implementation of the SSH protocol (version 2) for secure remote login, command execution and file transfer. It includes a client ``ssh`` and server ``sshd``, file transfer utilities ``scp`` and ``sftp`` as well as tools for key generation (``ssh-keygen``), run-time key storage (``ssh-agent``) and a number of supporting programs.
 
